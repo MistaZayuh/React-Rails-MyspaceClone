@@ -11,7 +11,7 @@ export class AuthProvider extends React.Component {
     axios.post("/api/auth", user)
       .then( res => {
         this.setState({ user: res.data.data})
-        history.push("/")
+        history.push(`/users/${user.id}/edit`)
       })
       .catch(err => {
         console.log(err)

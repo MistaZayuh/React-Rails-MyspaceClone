@@ -11,7 +11,7 @@ const PostList = (props) => {
     axios.get("/api/users/:user_id/posts")
       .then( res => {
         setPosts(res.data)
-      debugger})
+      })
       .catch( err => {
         console.log(err)
       })
@@ -30,7 +30,7 @@ const PostList = (props) => {
           <p>{ post.body }</p>
           <Divider />
           <Header as="h6" color="grey">Updated at: {post.updated_at}</Header>
-          { post.id === props.auth.user.id ? 
+          { post.user_id === props.auth.user.id ? 
             <Link to={`/posts/${post.id}/edit`}>
               <Button color="green">
                 Edit

@@ -3,6 +3,10 @@ class Api::UsersController < ApplicationController
     render json: User.all
   end
 
+  def show
+    render json: User.find(params[:id])
+  end
+
   def update
     if current_user.update(user_params)
       render json: current_user

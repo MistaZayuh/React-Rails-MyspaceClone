@@ -22,9 +22,10 @@ const UserList = (props) => {
     <Container>
       <Header as="h1" textAlign="center">All Users</Header>
       {users.map(user => (
-        <Segment key={user.id}>
-          <Header as="h3">{user.name}</Header>
+        <Segment width="400px" key={user.id}>
+          <Header as="h3">{user.nickname}</Header>
           <Divider />
+          <Header as="h5">{user.name}</Header>
           <Header as="h6" color="grey">Email: {user.email}</Header>
           <Link to={`/users/${user.id}`}>
             <Button color="blue">
@@ -33,7 +34,6 @@ const UserList = (props) => {
           </Link>
         </Segment>
       ))}
-
     </Container>
   );
 };
