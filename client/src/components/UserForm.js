@@ -4,7 +4,7 @@ import { AuthConsumer, } from "../providers/AuthProvider";
 import { Form, Header, Image, } from "semantic-ui-react";
 
 class UserForm extends React.Component {
-  state = { name: "", nickname: "", image: "", redirect: false, };
+  state = { name: "", nickname: "", image: "", };
 
   componentDidMount() {
     const { auth: { user, }, match: { params,}, history } = this.props

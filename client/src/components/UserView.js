@@ -7,6 +7,7 @@ import { Header, Segment, Divider, Button, Container, Card, Image, } from "seman
 const UserView = (props) => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
+  const [friends, setFriends] = useState([]);
   const { match: { params, }, } = props
 
   useEffect(() => {
@@ -27,19 +28,29 @@ const UserView = (props) => {
   }, [],
   );
 
+  const addFriend = (e) => {
+    debugger
+  };
+
   return (
     <Container display="flex">
       <Header as="h1" textAlign="center">{user.nickname}</Header>
       <Container>
-        { props.auth.user.id === +params.id ? 
-        <Link to={`/users/${user.id}/edit`}>
-          <Button color="green">
-            Edit Profile
+        {props.auth.user.id === +params.id ?
+          <Link to={`/users/${user.id}/edit`}>
+            <Button color="green">
+              Edit Profile
+            </Button>
+          </Link>
+          :
+          null
+        }
+          <Button onClick={addFriend} color="orange">
+            Add Friend
           </Button>
-        </Link>
-        :
-        null
-      }
+        <Segment>
+          
+        </Segment>
         <Card>
           <Image src={user.image} />
           <Card.Content>
@@ -58,7 +69,7 @@ const UserView = (props) => {
       </Container>
       <Container>
         <Header textAlign="center" as="h2">{user.nickname}'s posts</Header>
-        { posts.filter( post => post.user_id == props.match.params.id).map(post => (
+        {posts.filter(post => post.user_id === +props.match.params.id).map(post => (
           <Segment key={post.id}>
             <Header as="h3">
               {post.topic}
@@ -67,17 +78,17 @@ const UserView = (props) => {
               {post.body}
             </Container>
             <Divider />
-            { post.user_id === props.auth.user.id ? 
-            <Link to={`/posts/${post.id}/edit`}>
-              <Button color="green">
-                Edit
+            {post.user_id === props.auth.user.id ?
+              <Link to={`/posts/${post.id}/edit`}>
+                <Button color="green">
+                  Edit
               </Button>
-            </Link>
-            :
-            null }
+              </Link>
+              :
+              null}
           </Segment>
         )
-      )}
+        )}
       </Container>
     </Container>
   );

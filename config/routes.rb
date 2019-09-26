@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users do
+      get "my_friends", to: "users#my_friends"
+      get "add_friend", to: "users#add_friend"
       resources :posts
     end
   end
+
 end
